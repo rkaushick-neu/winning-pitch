@@ -1,0 +1,44 @@
+{
+  "pages": [
+    {
+      "index": 0,
+      "markdown": "This image displays the logo for \"WellTrack,\" an \"Interactive Self-Help Therapy\" service.\n\nAt the top, there's a colorful, abstract emblem resembling a stylized flower or star. It's composed of eight petal-like shapes arranged in a circle, each a different color from a spectrum including purple, blue, teal, green, yellow, orange, and red. Each \"petal\" is an elongated, somewhat irregular polygon with a pointed end facing outwards.\n\nBelow this emblem, the word \"WellTrack\" is written in a modern, sans-serif font in a dark gray color.\n\nUnderneath \"WellTrack,\" in a smaller, lighter gray font, is the tagline \"Interactive Self-Help Therapy.\"\n\n# WellTrack Interactive Self-Help Therapy"
+    },
+    {
+      "index": 1,
+      "markdown": "# **TIMING IS RIGHT**\n\nThis image is a visual representation of a group of people, likely illustrating a concept related to a central figure or a specific demographic within a larger population.\n\nHere's a breakdown of the visual elements:\n\n*   **Grid of Figures:** The majority of the image is filled with a grid of simple outline figures, resembling stick figures or icons of people. These are primarily in a muted gray color, suggesting a general or undifferentiated group.\n*   **Central Figure:** In the center of the grid, there is a distinct figure highlighted in a reddish-pink color. This figure is more detailed than the others, featuring a head, shoulders, and what appears to be a lab coat or medical attire with a cross symbol on the chest, suggesting a healthcare professional or someone in a similar role.\n*   **Color Differentiation:** Some of the gray figures immediately surrounding the central reddish-pink figure, and a few others scattered throughout, are also colored in a darker shade of gray or a subtle purple/maroon, indicating a slight differentiation from the main gray group, possibly representing a closer connection or a specific subgroup.\n*   **Arrangement:** The figures are arranged in rows and columns, creating a sense of order and a large population. The central figure stands out due to its color and slightly more detailed design.\n\nIn essence, the image uses a visual metaphor of a crowd with one prominent, distinct individual at its core, potentially highlighting a leader, a specific role, or a focus on an individual within a collective."
+    },
+    {
+      "index": 2,
+      "markdown": "# PRODUCT \n\nThis image displays a smartphone and a desktop monitor, both showing interfaces for a mood tracking or mental wellness application.\n\nOn the smartphone, the app is open to a \"Mood Check\" screen. It asks \"How are you feeling?\" with selectable emoji options, and \"You are feeling Good right now\" is selected. Below that, it asks \"What are you doing?\" with \"Doing a hobby\" selected. There are also fields for \"Outlets\" and \"Friends.\"\n\nThe desktop monitor shows a dashboard with various charts and graphs, likely summarizing mood data over time.\n*   **Top Row:** Three pie charts categorize mood as \"Good Mood,\" \"Normal Mood,\" and \"Bad Mood.\" Each pie chart shows a total count (e.g., 50 for Good Mood, 30 for Normal Mood, 10 for Bad Mood) and breaks down contributing factors with numerical counts (e.g., \"Duties,\" \"Physical Activity,\" \"Food,\" \"Using Tech,\" \"Quiet Activities\").\n*   **Bottom Row:** Three line graphs track \"Depression,\" \"Anxiety,\" and \"Stress\" over time, showing trends with different colored lines representing varying levels (e.g., \"Very High,\" \"High,\" \"Mild,\" \"Low\").\n\nOverall, the image depicts a digital tool designed for tracking and visualizing personal mood and mental health data."
+    },
+    {
+      "index": 3,
+      "markdown": "# GREAT TRACTION \n\n## \\$400,000 ARR\n\n## PennState UC San Diego\n\nBOSTON COLLEGE",
+      "images": [],
+      "dimensions": {
+        "dpi": 189,
+        "height": 2833,
+        "width": 5038
+      }
+    },
+    {
+      "index": 4,
+      "markdown": "# HUGE OPPORTUNITY\n\n- Total adressable market\n- Direct to Student Graduates\n- Segment currently served\n\nThis image is a Venn diagram or a set of concentric circles, illustrating different monetary values.\n\n*   The outermost and largest circle is yellow and contains the text \"$200B/ Year\".\n*   The middle circle, nested within the yellow one, is red and contains the text \"$2B/ Year\".\n*   The innermost and smallest circle, nested within the red one, is dark purple and contains the text \"$400M\".\n\nThe diagram visually represents a hierarchy or scale of values, with each smaller circle representing a progressively smaller amount within the larger context."
+    },
+    {
+      "index": 5,
+      "markdown": "# TEAM\n\nThis is a headshot of a man with dark, curly hair and a mustache, wearing a black collared shirt. He is smiling slightly and looking directly at the camera. The background is a plain, light gray.\n\n**DARREN PIERCEY PHD**\n\nCEO\nProfessor of Psychology\n\nThis is a headshot of a woman with medium-length brown hair, styled in waves. She is wearing a white collared shirt and has bright red lipstick. The background is a plain, dark gray color. She is looking directly at the camera with a slight smile.\n\n**NATASHA O'BRIEN**\n\nCOO\nSales & Marketing\n\nThe image is a headshot of a man with a beard and dark hair, smiling slightly. He is wearing a dark suit jacket over a light blue collared shirt, which is unbuttoned at the top. The background is a plain, light grey color. The lighting appears soft and even, highlighting his face.\n\n**JEREMIE BOURQUE**\n\nCTO\nFull Stack Developer"
+    },
+    {
+      "index": 6,
+      "markdown": "This image features a geometric pattern, reminiscent of Islamic art or a kaleidoscope design, set against a gradient background that transitions from a deep purple on the left to a lighter, almost golden hue on the right. The pattern itself is composed of interconnected, stylized octagons and squares, forming a star-like shape in the center. The lines of the pattern are white or a very light color, providing a strong contrast against the darker background. The overall impression is one of intricate design and cultural aesthetics.\n\n# **WellTrack Interactive Self-Help Therapy**"
+    }
+  ],
+  "model": "mistral-ocr-2505-completion",
+  "usage_info": {
+    "pages_processed": 7,
+    "doc_size_bytes": 644507
+  },
+  "document_annotation": null
+}

@@ -1,6 +1,7 @@
 import re
 import requests
 import os
+from utils.prompt_loader import load_prompt
 
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
 
@@ -14,10 +15,11 @@ def perplexity_search(query: str) -> dict:
         "Content-Type": "application/json"
     }
 
+    system_prompt = load_prompt("perplexity_search/v1")
     payload = {
         "model": "perplexity/sonar",
         "messages": [
-            {"role": "system", "content": "You are a research assistant that provides cited summaries. Always output all sources as markdown hyperlinks inline, without replacing them with reference numbers. Example: ... [[TechCrunch](https://techcrunch.com/abc)] ..."},
+            {"role": "system", "content": system_prompt},
             {"role": "user", "content": f"Search the web and summarize: {query}. Include citation URLs in markdown format."}
         ]
     }
