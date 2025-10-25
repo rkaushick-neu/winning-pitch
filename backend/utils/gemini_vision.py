@@ -12,9 +12,9 @@ logger = logging.getLogger(__name__)
 class GeminiVisionClient:
     def __init__(self):
         """Initialize the Gemini Vision client using OpenRouter."""
-        self.api_key = os.getenv("OPEN_ROUTER_API_KEY")
+        self.api_key = os.getenv("OPENROUTER_API_KEY")
         if not self.api_key:
-            raise ValueError("OPEN_ROUTER_API_KEY environment variable is required")
+            raise ValueError("OPENROUTER_API_KEY environment variable is required")
         
         # Initialize OpenAI client for OpenRouter
         self.client = OpenAI(
@@ -40,7 +40,7 @@ class GeminiVisionClient:
             
             # Default prompt for image captioning
             if not prompt:
-                prompt = "Describe this image in detail. Focus on the content, text, charts, diagrams, or any visual elements that would be important for understanding the context."
+                prompt = "Describe this image at a high level. Focus on the content, text, charts, diagrams, or any visual elements that would be important for understanding the context."
             
             # # Decode base64 image to bytes
             # image_bytes = base64.b64decode(image_base64)
