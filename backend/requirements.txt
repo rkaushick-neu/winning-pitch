@@ -8,3 +8,5 @@ requests
 mistralai
 ipykernel
 openai
+langgraph
+langchain
