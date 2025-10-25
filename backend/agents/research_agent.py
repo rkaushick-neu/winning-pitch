@@ -5,7 +5,7 @@ from openai import OpenAI
 
 client = OpenAI(base_url="https://openrouter.ai/api/v1", api_key=os.getenv("OPENROUTER_API_KEY"))
 
-def research_agent(json_path: str, company_name: str):
+def research_agent(json_path: str, company_name: str) -> str:
     with open(f"./../data/markdown/{json_path}.json", "r") as f:
         pitch_data = json.load(f)
 
@@ -67,3 +67,4 @@ def research_agent(json_path: str, company_name: str):
         f.write(markdown_output)
 
     print(f"✅ Report saved at: {output_path}")
+    return markdown_output
