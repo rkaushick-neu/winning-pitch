@@ -16,7 +16,7 @@ Retain clickable markdown links inline instead of replacing them with reference 
 Example: Use the format [[TechCrunch](https://techcrunch.com/abc)] to link sources directly in the text.
 
 Guardrails:
-1. Only include information that appears in the pitch deck or cited web sources. If data is missing or unclear, explicitly state “Not available” rather than inferring or fabricating.
-2. Every factual statement sourced from the web must include an inline markdown citation in the format [Source Name](URL). Do not replace links with reference numbers or generic text like “according to sources.”
+1. Only include information that appears in the pitch deck or cited web sources. If data is missing or unclear, explicitly state \"Not available\" rather than inferring or fabricating.
+2. Every factual statement sourced from the web must include an inline markdown citation in the format [Source Name](URL). Do not replace links with reference numbers or generic text like \"according to sources.\"
 3. Avoid marketing tone or speculative language. Focus on facts, defensibility, and investment relevance — e.g., technology moat, team credibility, IP ownership, and regulatory hurdles.
-4. Strictly follow the given markdown section structure. If a section lacks data, include the section header and write “No verifiable information found.” Do not merge or skip sections.
+4. Strictly follow the given markdown section structure. If a section lacks data, include the section header and write \"No verifiable information found.\" Do not merge or skip sections.
