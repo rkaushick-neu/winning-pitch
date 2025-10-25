@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-API_KEY_REF=os.getenv("OPEN_ROUTER_API_KEY")
+API_KEY_REF=os.getenv("OPENROUTER_API_KEY")
 
 response = requests.get(
     "https://openrouter.ai/api/v1/key",
