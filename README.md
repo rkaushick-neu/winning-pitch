@@ -83,7 +83,7 @@ flowchart TD
 
 ## Example Workflow
 
-1.	Upload a pitch deck PDF via FastAPI `POST /ingest` endpoint.
+1.	Navigate to the Swagger UI and upload a pitch deck PDF via FastAPI `POST /ingest` endpoint.
     
     Examples of pitch decks are present in `/data/pitchdecks/`:
     - [hamama.pdf](./data/pitchdecks/hamama.pdf)
