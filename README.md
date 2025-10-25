@@ -74,6 +74,10 @@ flowchart TD
    ```bash
    uvicorn main:app --reload 
    ```
+6. Navigate to Swagger UI to test the APIs:
+   ```
+   http://localhost:8000/docs
+   ```
 
 ---    
 
