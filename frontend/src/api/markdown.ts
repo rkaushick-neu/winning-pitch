@@ -18,5 +18,5 @@ export function getMarkdownById(id: string): Promise<string> {
 export function ingestPitchDeck(file: File): Promise<IngestResponse> {
   const form = new FormData();
   form.append("file", file);
-  return apiPostForm<IngestResponse>("/api/ingest", form);
+  return apiPostForm<IngestResponse>("/api/process/pitchdeck", form);
 }

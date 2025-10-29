@@ -7,9 +7,10 @@ export interface MarkdownFile {
   }
   
   export interface IngestResponse {
-    // Tailor to your backend response
-    // Minimal assumption: it returns the new markdown id/name that was created
-    id: string;       // e.g., "company-4.md"
-    name: string;     // e.g., "Company 4 Markdown"
-    message?: string; // optional status message
+    file_id: string;
+    message: string;
+    markdown: string;
+    ocr_path: string;
+    captioned_path: string;
+    final_md_id: string;
   }
