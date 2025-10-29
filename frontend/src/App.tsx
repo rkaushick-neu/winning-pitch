@@ -49,10 +49,12 @@ export default function App() {
       // After success, refresh list so the new markdown shows up.
       await refreshList();
       // Optionally auto-open the new file
-      if (res?.id) {
-        await selectMarkdown(res.id);
+      if (res?.file_id && res?.markdown) {
+        await selectMarkdown(res.final_md_id);
       }
-      setMainView({ kind: "markdown", id: res?.id ?? "" });
+      setMainView({ kind: "markdown", id: res?.file_id ?? "" });
+    } catch (error) {
+      console.error("Upload failed:", error);
     } finally {
       setIsIngesting(false);
     }
