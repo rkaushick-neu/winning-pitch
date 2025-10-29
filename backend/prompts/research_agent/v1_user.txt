@@ -1,0 +1,14 @@
+You are analyzing a startup called {company_name} based on its pitch deck and verified web research.
+
+Below is the extracted content from the pitch deck (OCR + image captions), followed by web findings with inline citations.
+
+---
+## Pitch Deck Content
+{pitch_deck_context}
+
+---
+## Verified Web Findings
+{web_search_results}
+
+---
+Please synthesize the information above into an investment-ready markdown report following the system instructions.
