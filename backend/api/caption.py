@@ -4,17 +4,18 @@ import os
 import json
 import re
 from typing import List, Dict, Any
-import logging
+# import logging
+from utils.logger import get_logger
 from utils.gemini_vision import GeminiVisionClient
 
 router = APIRouter()
 
-# Base path for markdown files
-MARKDOWN_DIR = "./../data/markdown"
+# Base path for intermediate files
+INTERMEDIATE_DIR = "./../data/intermediate"
+os.makedirs(INTERMEDIATE_DIR, exist_ok=True)
 
 # Set up logging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+logger = get_logger("caption_images")
 
 def extract_image_references(markdown_text: str) -> List[str]:
     """
@@ -120,6 +121,14 @@ def process_markdown_file(file_path: str) -> Dict[str, Any]:
         captioned_data = markdown_data.copy()
         captioned_data["pages"] = processed_pages
         
+        # Save the captioned file automatically
+        file_id = os.path.splitext(os.path.basename(file_path))[0]
+        captioned_filename = f"{file_id}-captioned.json"
+        captioned_file_path = os.path.join(INTERMEDIATE_DIR, captioned_filename)
+        with open(captioned_file_path, 'w', encoding='utf-8') as outfile:
+            json.dump(captioned_data, outfile, indent=2, ensure_ascii=False)
+        logger.info(f"Captioned file saved successfully: {captioned_file_path}")
+        
         return {
             "data": captioned_data,
             "total_images_processed": total_images_processed,
@@ -133,13 +142,14 @@ def process_markdown_file(file_path: str) -> Dict[str, Any]:
             detail=f"Error processing markdown file: {str(e)}"
         )
 
+# no longer in use
 @router.post("/caption/all")
 async def caption_all_markdowns():
     """
     Process all markdown JSON files and create captioned versions.
     """
     try:
-        if not os.path.exists(MARKDOWN_DIR):
+        if not os.path.exists(INTERMEDIATE_DIR):
             return JSONResponse(
                 content={
                     "message": "No markdown directory found",
@@ -150,7 +160,7 @@ async def caption_all_markdowns():
             )
         
         # Get all JSON files
-        json_files = [f for f in os.listdir(MARKDOWN_DIR) if f.endswith('.json')]
+        json_files = [f for f in os.listdir(INTERMEDIATE_DIR) if f.endswith('.json')]
         
         if not json_files:
             return JSONResponse(
@@ -167,18 +177,11 @@ async def caption_all_markdowns():
         
         for filename in json_files:
             file_id = os.path.splitext(filename)[0]
-            file_path = os.path.join(MARKDOWN_DIR, filename)
+            file_path = os.path.join(INTERMEDIATE_DIR, filename)
             
             try:
                 # Process the file
                 result = process_markdown_file(file_path)
-                
-                # Save captioned version
-                captioned_filename = f"{file_id}-captioned.json"
-                captioned_file_path = os.path.join(MARKDOWN_DIR, captioned_filename)
-                
-                with open(captioned_file_path, 'w', encoding='utf-8') as file:
-                    json.dump(result["data"], file, indent=2, ensure_ascii=False)
                 
                 processed_files.append({
                     "original_id": file_id,
@@ -189,7 +192,7 @@ async def caption_all_markdowns():
                 
                 total_images_processed += result["total_images_processed"]
                 
-                logger.info(f"Successfully processed {filename} -> {captioned_filename}")
+                logger.info(f"Successfully processed {filename} -> {file_id}-captioned.json")
                 
             except Exception as e:
                 logger.error(f"Failed to process {filename}: {str(e)}")
@@ -215,6 +218,7 @@ async def caption_all_markdowns():
             detail=f"Error processing all markdown files: {str(e)}"
         )
 
+# no longer in use
 @router.post("/caption/{markdown_id}")
 async def caption_markdown_by_id(markdown_id: str):
     """
@@ -222,7 +226,7 @@ async def caption_markdown_by_id(markdown_id: str):
     """
     try:
         # Construct the file path
-        file_path = os.path.join(MARKDOWN_DIR, f"{markdown_id}.json")
+        file_path = os.path.join(INTERMEDIATE_DIR, f"{markdown_id}.json")
         
         if not os.path.exists(file_path):
             raise HTTPException(
@@ -233,20 +237,13 @@ async def caption_markdown_by_id(markdown_id: str):
         # Process the file
         result = process_markdown_file(file_path)
         
-        # Save captioned version
-        captioned_filename = f"{markdown_id}-captioned.json"
-        captioned_file_path = os.path.join(MARKDOWN_DIR, captioned_filename)
-        
-        with open(captioned_file_path, 'w', encoding='utf-8') as file:
-            json.dump(result["data"], file, indent=2, ensure_ascii=False)
-        
         return JSONResponse(
             content={
                 "original_id": markdown_id,
                 "captioned_id": f"{markdown_id}-captioned",
                 "images_processed": result["total_images_processed"],
                 "processed_pages": result["processed_page_indices"],
-                "message": f"Successfully processed {markdown_id}.json -> {captioned_filename}"
+                "message": f"Successfully processed {markdown_id}.json -> {markdown_id}-captioned.json"
             },
             status_code=200
         )
