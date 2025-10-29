@@ -1,0 +1,15 @@
+Perform a focused web search about the company: {company_name}.
+
+Your task:
+- Summarize **verified** information from credible sources (official website, Crunchbase, TechCrunch, academic articles, or news).
+- Emphasize key data points investors care about:
+  - Founding year, founders, advisors, investors, funding rounds, and partners
+  - Product or technology focus (especially IP, patents, and differentiators)
+  - Clinical trials, regulatory milestones, or market traction (if applicable)
+- Keep it **concise** (5–7 sentences, factual tone, no repetition).
+- For every factual statement, **include an inline clickable citation in markdown** right after the claim.  
+  Example: The company raised $3.5M in seed funding [[Crunchbase](https://crunchbase.com/company/abc)].
+- Do **not** add headings, bullet points, or commentary.
+
+Output:
+Plain markdown paragraph(s) with inline citations only.
