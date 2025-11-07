@@ -1,6 +1,6 @@
 import os
 from pdf2image import convert_from_bytes
-from pptx import Presentation
+# from pptx import Presentation
 from PIL import Image
 import io
 
@@ -12,13 +12,13 @@ def convert_to_images(file_content: bytes, filename: str) -> list[Image.Image]:
         pages = convert_from_bytes(file_content)
         images.extend(pages)
 
-    elif ext in [".ppt", ".pptx"]:
-        prs = Presentation(io.BytesIO(file_content))
-        for slide in prs.slides:
-            # Export each slide as image (using PIL)
-            slide_image = _render_slide_as_image(slide)
-            if slide_image:
-                images.append(slide_image)
+    # elif ext in [".ppt", ".pptx"]:
+    #     prs = Presentation(io.BytesIO(file_content))
+    #     for slide in prs.slides:
+    #         # Export each slide as image (using PIL)
+    #         slide_image = _render_slide_as_image(slide)
+    #         if slide_image:
+    #             images.append(slide_image)
     else:
         raise ValueError("Unsupported file type.")
     return images
