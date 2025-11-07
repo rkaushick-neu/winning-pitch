@@ -7,7 +7,7 @@ from utils.gemini_vision import GeminiVisionClient
 from api.caption import process_markdown_file  # reuse existing logic if possible
 from utils.logger import get_logger
 from agents.research_agent import research_agent
-from utils.vector_store import store_in_qdrant
+# from utils.vector_store import store_in_qdrant
 
 
 router = APIRouter()
