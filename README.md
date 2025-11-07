@@ -79,6 +79,41 @@ flowchart TD
    http://localhost:8000/docs
    ```
 
+### Frontend
+
+1. Navigate to the Frontend Folder from the Root Folder `winning-pitch/`
+    ```bash
+    cd frontend
+    ```
+2. Install Dependencies
+    ```bash
+    npm install
+    ```
+3. Configure Environment Variables:
+
+    Copy the example environment file:
+    ```bash
+    cp .env.example .env
+    ```
+
+    Open .env and update the backend API base URL if needed:
+    ```
+    VITE_API_BASE=http://localhost:8000
+    ```
+4. Run the Development Server
+    ```bash
+    npm run dev
+    ```
+
+    The app should now be available at: `http://localhost:5173`
+5. Build for Production
+    ```bash
+    npm run build
+    ```
+6. Preview the Production Build (Optional)
+    ```bash
+    npm run preview
+    ```
 ---    
 
 ## Example Workflow
