@@ -7,10 +7,15 @@ from dotenv import load_dotenv
 from mistralai import Mistral, DocumentURLChunk
 from mistralai.models import OCRResponse
 from pathlib import Path
-
+from utils.logger import get_logger
 
 load_dotenv()
 MISTRAL_API_KEY = os.getenv("MISTRAL_API_KEY")
+
+INTERMEDIATE_DIR = "./../data/intermediate"
+os.makedirs(INTERMEDIATE_DIR, exist_ok=True)
+
+logger = get_logger("ocr")
 
 def replace_images_in_markdown(markdown_str: str, images_dict: dict) -> str:
     """
@@ -52,6 +57,9 @@ def get_combined_markdown(ocr_response: OCRResponse) -> str:
 
 def perform_ocr_on_pdf(pdf_content: bytes, filename: str) -> str:
     """Send PDF directly to Mistral for OCR/text extraction."""
+
+    logger.info("Starting OCR...")
+
     
     client = Mistral(api_key=MISTRAL_API_KEY)
 
@@ -80,14 +88,15 @@ def perform_ocr_on_pdf(pdf_content: bytes, filename: str) -> str:
     base_filename = os.path.splitext(filename)[0]  # Remove extension
     output_filename = f"{base_filename}-ocr-response.json"
     
-    # Save JSON response to a file in the data/markdown directory
-    output_file = Path("./../data/markdown") / output_filename
+    # Save JSON response to a file in the data/intermediate directory
+    output_file = Path(INTERMEDIATE_DIR) / output_filename
     output_file.parent.mkdir(parents=True, exist_ok=True)  # Create directory if it doesn't exist
 
     with open(output_file, 'w', encoding='utf-8') as f:
         json.dump(response_dict, f, indent=4, ensure_ascii=False)
 
     print(f"\nJSON response saved to: {output_file}")
+    logger.info(f"JSON response saved to: {output_file}")
     return str(output_file)
 
 

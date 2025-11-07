@@ -3,11 +3,17 @@ import os
 from agents.tools.perplexity_search import perplexity_search
 from openai import OpenAI
 from utils.prompt_loader import load_prompt
+from utils.logger import get_logger
 
 client = OpenAI(base_url="https://openrouter.ai/api/v1", api_key=os.getenv("OPENROUTER_API_KEY"))
 
+# Base path for intermediate files
+INTERMEDIATE_DIR = "./../data/intermediate"
+
+logger = get_logger("research_agent")
+
 def research_agent(json_path: str, company_name: str) -> str:
-    with open(f"./../data/markdown/{json_path}.json", "r") as f:
+    with open(f"{INTERMEDIATE_DIR}/{json_path}.json", "r") as f:
         pitch_data = json.load(f)
 
     # Updated to handle merged OCR + caption JSON
@@ -15,17 +21,20 @@ def research_agent(json_path: str, company_name: str) -> str:
     context = "\n\n".join([page["markdown"] for page in pages if page.get("markdown")])
 
     # Step 1: Perform web enrichment
-    print("Searching Perplexity for background info...")
+    logger.info("Searching Perplexity for background info...")
     # search_result = perplexity_search(f"{company_name} startup overview life sciences funding team patents")
-    search_result = perplexity_search(
-        f"{company_name} startup overview founders team background advisors funding rounds investors technology intellectual property patents product development clinical trials market landscape competitors differentiation traction customers partnerships publications regulatory approvals"
-    )
+    search_result = perplexity_search(company_name)
 
-    print(f"\nRESEARCH AGENT: Perplexity Search Result: \n{search_result}")
+    logger.info(f"Perplexity Search Result: {search_result}")
 
-    system_prompt = load_prompt("research_agent/v1")
+    # load system and user prompts
+    system_prompt_template = load_prompt("research_agent/v2_system") 
+    system_prompt = system_prompt_template.format(company_name=company_name)
+    user_prompt_template = load_prompt("research_agent/v1_user")
+    user_prompt = user_prompt_template.format(company_name=company_name, pitch_deck_context=context, web_search_results=search_result["summary"])
+
     # Step 2: Generate structured markdown using ChatGPT/Claude
-    print("Generating investment summary...")
+    logger.info("Generating investment summary...")
     messages = [
         {
             "role": "system",
@@ -33,18 +42,14 @@ def research_agent(json_path: str, company_name: str) -> str:
         },
         {
             "role": "user",
-            "content": (
-                f"# Pitch Deck (merged OCR of text + image captions):\n{context}\n\nWeb Findings:\n{search_result['summary']}"
-                f"# Web Findings:\n{search_result['summary']}\n\n"
-                # f"Citations:\n{', '.join(search_result.get('citations', []))}"
-            )
+            "content": user_prompt
         }
     ]
 
     # print(f"\nRESEARCH AGENT: User Prompt Message: \n {messages[1]['content']}")
 
     response = client.chat.completions.create(
-        model="google/gemini-2.5-flash",
+        model="openai/gpt-4o",
         messages=messages,
         temperature=0.3
     )
@@ -56,5 +61,5 @@ def research_agent(json_path: str, company_name: str) -> str:
     with open(output_path, "w") as f:
         f.write(markdown_output)
 
-    print(f"✅ Report saved at: {output_path}")
+    logger.info(f"Report saved at: {output_path}")
     return markdown_output

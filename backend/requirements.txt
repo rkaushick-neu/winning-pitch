@@ -10,3 +10,6 @@ ipykernel
 openai
 langgraph
 langchain
+beautifulsoup4
+qdrant-client
+tiktoken
