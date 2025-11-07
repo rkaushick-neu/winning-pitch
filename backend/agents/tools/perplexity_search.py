@@ -3,7 +3,7 @@ import requests
 import os
 from utils.prompt_loader import load_prompt
 from utils.logger import get_logger
-from utils.vector_store import store_in_qdrant
+# from utils.vector_store import store_in_qdrant
 
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
 

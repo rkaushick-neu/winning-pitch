@@ -1,4 +1,4 @@
-from qdrant_client import QdrantClient, models
+# from qdrant_client import QdrantClient, models
 from openai import OpenAI
 import uuid, os
 
